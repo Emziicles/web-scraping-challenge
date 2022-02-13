@@ -1,6 +1,6 @@
 # import dependencies
 
-from selenium import Browser
+from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 import datetime as dt
@@ -58,7 +58,7 @@ def featured_image(browser):
     
     try:
         
-    image = [i.get("src") for i in soup2.find_all("img", class_= "headerimage fade-in")]
+        image = [i.get("src") for i in soup2.find_all("img", class_= "headerimage fade-in")]
     
     except AttributeError:
         return None
@@ -87,7 +87,7 @@ def hemispheres(browser):
     for images in range(4):
         html = browser.html
         soup4 = bs(html, 'html.parser')
-        title = soup4.find("h2", class_"title").text
+        title = soup4.find("h2", class_="title").text
         img_url = soup4.find("li").a.get('href')
         hemispheres_dict = {}
         hemispheres_dict["img_url"] = f'https://marshemispheres.com/{img_url}'
@@ -97,6 +97,7 @@ def hemispheres(browser):
         browser.back()
     return hemisphere_image_urls
     
+browser.quit()
     
 if __name__ == "__main__":
     print(scrape())
